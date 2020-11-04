@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import firebase from '../config/fbConfig';
 
 function SignUp() {
 
@@ -18,7 +19,7 @@ function SignUp() {
             setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(firstName);
         console.log(lastName);

@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import firebase from '../config/fbConfig';
 
 function SignIn() {
 
@@ -12,11 +13,17 @@ function SignIn() {
             setPassword(e.target.value);
     }
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        console.log(email);
-        console.log(password);
+    async function handleSubmit() {
+        // e.preventDefault();
+        // console.log(email);
+        // console.log(password);
+        try{
+            await firebase.login(email, password)
+        } catch(error){
+            alert(error.message);
+        }
     }
+       
 
     return (
         <div className = "container">
@@ -31,7 +38,7 @@ function SignIn() {
                     <input type="password" id="password" onChange = {handleChange} />
                 </div>
                 <div className= "input-field">
-                    <button className="btn pink lighten-1 z-depth-0">Login</button>
+                    <button className="btn pink lighten-1 z-depth-0" onClick = {handleSubmit}>Login</button>
                 </div>
             </form>            
         </div>
